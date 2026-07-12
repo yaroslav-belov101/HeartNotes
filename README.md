@@ -1,16 +1,58 @@
-# React + Vite
+# HeartNotes
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Приложение для хранения предпочтений близких людей. Что она любит, что ненавидит, что дарить на праздники — всё в одном месте.
 
-Currently, two official plugins are available:
+## Возможности
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 👤 **Профили людей** — создавай карточки для друзей, семьи, второй половинки
+- 🖼️ **Аватарки** — загружай фото с обрезкой в круг
+- 🔍 **Поиск** — быстро найди любую заметку по названию или деталям
+- 🏷️ **Категории** — цветы, еда, напитки, музыка и другие
+- ❤️ **Отношение** — отметь, что человек обожает, любит, не переносит или у него аллергия
+- 🌙 **Тёмная тема** — автоматически подстраивается под систему
 
-## React Compiler
+## Стек
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend:** React + Vite
+- **Стили:** CSS с CSS-переменными
+- **Backend:** Django (в разработке)
 
-## Expanding the Oxlint configuration
+## Установка
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```bash
+# Клонируй репозиторий
+git clone <https://github.com/ТВОЙ_НИК/HeartNotes.git>
+
+# Перейди в папку
+cd HeartNotes
+
+# Установи зависимости
+npm install
+
+# Запусти dev-сервер
+npm run dev
+```
+
+## Структура проекта
+
+```
+src/
+├── components/
+│   ├── UserTabs/          # Вкладки выбора человека
+│   ├── SearchBar/         # Поисковая строка
+│   ├── Header/            # Шапка с кнопкой добавления
+│   └── NotesList/         # Список овальных заметок (в разработке)
+├── App.jsx
+└── main.jsx
+```
+
+## Планы
+
+- [ ]  Django backend для хранения данных
+- [ ]  Синхронизация между устройствами
+- [ ]  Экспорт в PDF (список предпочтений)
+- [ ]  Напоминания о днях рождения
+
+## Лицензия
+
+MIT
