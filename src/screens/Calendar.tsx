@@ -421,7 +421,7 @@ export default function Calendar({ onViewNote: _onViewNote }: Props) {
               const diffMs = ev.date.getTime() - today.getTime()
               const diffDays = Math.ceil(diffMs / 86400000)
               return (
-                <div key={ev.id} style={{
+                <div key={ev.id} className="anim-fade-up" style={{
                   borderRadius: 16, padding: '12px 16px',
                   background: 'rgba(30,30,63,0.5)',
                   border: '1px solid rgba(255,255,255,0.07)',

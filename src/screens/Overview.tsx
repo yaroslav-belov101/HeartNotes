@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { notes as allNotes } from '../data'
 
 function loadProfilesCount() {
   try {
@@ -19,8 +20,8 @@ export default function Overview() {
     return () => window.removeEventListener('storage', onStorage)
   }, [])
 
-  // Per request: clear records and tags in overview (show empty)
-  const noteCount = 0
+  // Notes and tags
+  const noteCount = allNotes.length
   const tagList: { word: string; weight: number }[] = []
   // Upcoming events removed from Overview (kept only in Calendar)
 
