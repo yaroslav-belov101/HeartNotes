@@ -77,7 +77,7 @@ function NoteFormModal({ note, userId, onSave, onDelete, onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal" onClick={e => e.stopPropagation()}>
+      <div className="modal" onClick={e => e.stopPropagation()} style={{ background: 'rgba(13,13,26,0.95)', border: '1px solid rgba(255,255,255,0.12)', color: '#f8f8fb' }}>
         <button className="modal-close" onClick={onClose}>✕</button>
         
         <h3>{isEditing ? 'Редактировать' : 'Новая заметка'}</h3>
@@ -85,7 +85,15 @@ function NoteFormModal({ note, userId, onSave, onDelete, onClose }) {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Категория</label>
-            <select value={category} onChange={e => setCategory(e.target.value)}>
+            <select
+              value={category}
+              onChange={e => setCategory(e.target.value)}
+              style={{
+                width: '100%', padding: '12px 14px', borderRadius: 14,
+                border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.05)',
+                color: '#f8f8fb', outline: 'none', fontSize: '0.95rem',
+              }}
+            >
               {categories.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
             
@@ -135,6 +143,11 @@ function NoteFormModal({ note, userId, onSave, onDelete, onClose }) {
               value={details}
               onChange={e => setDetails(e.target.value)}
               rows={3}
+              style={{
+                width: '100%', padding: '13px 14px', borderRadius: 14,
+                border: '1px solid rgba(255,255,255,0.12)', background: 'rgba(255,255,255,0.05)',
+                color: '#f8f8fb', outline: 'none', fontSize: '0.88rem', resize: 'none', lineHeight: 1.5,
+              }}
             />
           </div>
 
@@ -148,7 +161,15 @@ function NoteFormModal({ note, userId, onSave, onDelete, onClose }) {
             </button>
           )}
 
-          <button type="submit" className="save-btn" disabled={!title.trim()}>
+          <button
+            type="submit"
+            className="save-btn"
+            disabled={!title.trim()}
+            style={{
+              background: 'linear-gradient(135deg, rgba(248,113,113,1), rgba(255,142,114,1))',
+              color: '#fff', border: 'none', boxShadow: '0 14px 30px rgba(255,100,120,0.18)'
+            }}
+          >
             {isEditing ? 'Сохранить' : 'Добавить'}
           </button>
         </form>

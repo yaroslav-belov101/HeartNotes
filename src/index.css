@@ -1,14 +1,19 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
+  --text: #d1d5db;
+  --text-h: #f8f8fb;
+  --bg: #0D0D1A;
+  --border: rgba(255, 255, 255, 0.08);
   --code-bg: #f4f3ec;
   
   /* Красный акцент */
   --accent: #dc2626;
+  --accent-2: #ff8e72;
+  --accent-gradient: linear-gradient(135deg, var(--accent), var(--accent-2));
   --accent-bg: rgba(220, 38, 38, 0.1);
   --accent-border: rgba(220, 38, 38, 0.5);
+  /* Blue accent for plus button */
+  --accent-blue: #3B82F6;
+  --accent-blue-bg: rgba(59,130,246,0.12);
   
   --social-bg: rgba(244, 243, 236, 0.5);
   --shadow:
@@ -31,6 +36,78 @@
   @media (max-width: 1024px) {
     font-size: 16px;
   }
+}
+
+/* Small UI animations used across the app */
+.anim-fade-up {
+  animation: fadeUp 260ms cubic-bezier(.2,.9,.3,1) both;
+}
+.anim-pop {
+  animation: pop 220ms cubic-bezier(.2,.9,.3,1) both;
+}
+
+.anim-slide-in {
+  animation: slideIn 320ms cubic-bezier(.16,.84,.24,1) both;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.smooth-focus {
+  transition: box-shadow 220ms cubic-bezier(.2,.9,.3,1), transform 180ms ease, background 180ms ease;
+}
+.ann-input:focus { box-shadow: 0 6px 20px rgba(59,130,246,0.12); transform: translateY(-2px); }
+.ann-add-btn:active { transform: scale(0.98); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+  0% { transform: scale(.98); opacity: 0.0 }
+  60% { transform: scale(1.02); opacity: 1 }
+  100% { transform: scale(1); opacity: 1 }
+}
+
+/* Anniversary box styling to match the app glass look */
+.ann-box {
+  border-radius: 16px;
+  padding: 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.ann-input {
+  padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02); color: var(--text-h); outline: none;
+}
+.ann-add-btn {
+  background: var(--accent); color: #fff; border: none; padding: 10px 12px; border-radius: 12px; cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.ann-add-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
+.ann-list-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.03); transition: transform 140ms ease, background 140ms ease;
+}
+.ann-list-item:hover { transform: translateY(-4px); background: rgba(255,255,255,0.03); }
+
+
+html, body, #root {
+  min-height: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 @media (prefers-color-scheme: dark) {

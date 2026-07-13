@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react'
+import './SeacrhBar.css'
 
 function SearchBar({ value, onChange, placeholder = 'Поиск записей...' }) {
   const inputRef = useRef(null);
@@ -20,7 +21,7 @@ function SearchBar({ value, onChange, placeholder = 'Поиск записей..
   };
 
   return (
-    <div className="search-bar">
+    <div className="app-search-bar">
       <span className="search-icon">🔍</span>
       <input
         ref={inputRef}

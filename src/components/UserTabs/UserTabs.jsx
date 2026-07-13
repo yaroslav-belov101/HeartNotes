@@ -77,7 +77,7 @@ function UserTabs({ onActiveChange }) {
   const loadUsers = async () => {
     try {
       setIsLoading(true);
-      const data = await API.getUsers();
+      const data = await import('../../lib/users').then(m => m.getUsers())
       
       if (data.length === 0) {
         const defaults = [
@@ -87,9 +87,9 @@ function UserTabs({ onActiveChange }) {
         ];
        
         for (const u of defaults) {
-          await API.createUser(u);
+          await import('../../lib/users').then(m => m.createUser(u))
         }
-        const refreshed = await API.getUsers();
+        const refreshed = await import('../../lib/users').then(m => m.getUsers())
         setUsers(refreshed);
       } else {
         setUsers(data);
@@ -238,71 +238,15 @@ function UserTabs({ onActiveChange }) {
         +
       </button>
 
-      <button
-        className="manage-btn"
-        onClick={() => setShowManage(true)}
-        title="Управление профилями"
-      >
-        ⚙️
-      </button>
+      {/* manage button removed — moved to Settings */}
       
       {/* Модалка управления профилями с drag & drop */}
-      {showManage && (
-        <div className="modal-overlay" onClick={() => setShowManage(false)}>
-          <div className="modal manage-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setShowManage(false)}>✕</button>
-            <h3>Профили</h3>
-            <p className="drag-hint">⟷ Перетягивайте для смены порядка</p>
-            
-            <div className="users-list">
-              {users.map((user, index) => (
-                <div 
-                  key={user.id || index} 
-                  className={`user-list-item ${
-                    draggedIndex === index ? 'dragging' : ''
-                  } ${
-                    dragOverIndex === index && dragOverIndex !== draggedIndex ? 'drag-over' : ''
-                  }`}
-                  draggable
-                  onDragStart={() => handleDragStart(index)}
-                  onDragOver={(e) => handleDragOver(e, index)}
-                  onDragLeave={handleDragLeave}
-                  onDrop={(e) => handleDrop(e, index)}
-                  onDragEnd={handleDragEnd}
-                >
-                  <span className="drag-handle">☰</span>
-                  <div className="user-list-info">
-                    <div className="user-list-icon-placeholder">{user.name[0]}</div>
-                    <span className="user-list-name">{user.name}</span>
-                  </div>
-                  <div className="user-list-actions-vertical">
-                    <button 
-                      className="action-btn edit" 
-                      onClick={() => handleEditUser(index)}
-                      title="Редактировать"
-                    >
-                      ✎
-                    </button>
-                    <button 
-                      className="action-btn delete" 
-                      onClick={() => handleDeleteUser(index)}
-                      disabled={users.length <= 1}
-                      title="Удалить"
-                    >
-                      🗑
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+      {/* profile management moved to Settings screen */}
       
       {/* Модалка добавления/редактирования */}
       {showForm && (
         <div className="modal-overlay" onClick={resetForm}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
+          <div className="modal" onClick={(e) => e.stopPropagation()} style={{ background: 'rgba(13,13,26,0.95)', border: '1px solid rgba(255,255,255,0.12)', color: '#f8f8fb' }}>
             <button className="modal-close" onClick={resetForm}>✕</button>
             <h3>{editingIndex !== null ? 'Редактировать' : 'Новый человек'}</h3>
             
@@ -315,6 +259,11 @@ function UserTabs({ onActiveChange }) {
                 value={newUserName}
                 onChange={(e) => setNewUserName(e.target.value)}
                 autoFocus
+                style={{
+                  width: '100%', padding: '12px 14px', borderRadius: 14,
+                  border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)',
+                  color: '#f8f8fb', outline: 'none', fontSize: '0.95rem',
+                }}
               />
             </div>
 

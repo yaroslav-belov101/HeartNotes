@@ -1,0 +1,51 @@
+.onboarding {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+  gap: 24px;
+  background: #0D0D1A;
+}
+
+.onboarding-emoji {
+  font-size: 4rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.onboarding-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.onboarding-sub {
+  color: #A0A0C0;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 280px;
+  margin: 0;
+}
+
+.btn-primary {
+  width: 100%;
+  max-width: 280px;
+  padding: 16px;
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
